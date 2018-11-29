@@ -1,0 +1,198 @@
+        <!DOCTYPE html>
+        <html lang="es">
+
+        <head>
+
+            <meta charset="utf-8">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+            <meta name="description" content="">
+            <meta name="author" content="">
+
+            <title>Sistema de de matriculas</title>
+
+            <!-- estilos CSS -->
+            <link href="/matricula/public/css/bootstrap.min.css" rel="stylesheet">
+            <link href="/matricula/public/css/sb-admin.css" rel="stylesheet">
+            <link href="/matricula/public/css/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+            <!--SCRIPTS-->
+            <script src="/matricula/public/js/jquery.js"></script>
+            <script src="/matricula/public/js/bootstrap.min.js"></script>
+            
+            <!--VALIDACIONES-->
+            <script src="/matricula/public/js/sistema/jsValidarRutas.js"></script>
+        </head>
+
+        <body>
+
+            <div id="wrapper">
+
+                <!-- Navigation -->
+                <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="/matricula/modulos/creditos/administracion" target="admin">Sistema de matriculas</a>
+                    </div>
+                    <!-- Top Menu Items -->
+                    <ul class="nav navbar-right top-nav">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-cogs"></i> <b class="caret"></b></a>
+                            <ul class="dropdown-menu alert-dropdown">
+                                <li>
+                                    <a href="#">Alert Name <span class="label label-default">Alert Badge</span></a>
+                                </li>
+                                
+                                <li class="divider"></li>
+                                <li>
+                                    <a href="#">View All</a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-envelope"></i> <b class="caret"></b></a>
+                            <ul class="dropdown-menu message-dropdown">
+
+                                <li class="message-preview">
+                                    <a href="#">
+                                        <div class="media">
+                                            <span class="pull-left">
+                                                <img class="media-object" src="http://placehold.it/50x50" alt="">
+                                            </span>
+                                            <div class="media-body">
+                                                <h5 class="media-heading"><strong>John Smith</strong>
+                                                </h5>
+                                                <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
+                                                <p>Lorem ipsum dolor sit amet, consectetur...</p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                                
+                                
+                                <li class="message-footer">
+                                    <a href="#">Read All New Messages</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell"></i> <b class="caret"></b></a>
+                            <ul class="dropdown-menu alert-dropdown">
+                                <li>
+                                    <a href="#">Alert Name <span class="label label-default">Alert Badge</span></a>
+                                </li>
+                                
+                                <li class="divider"></li>
+                                <li>
+                                    <a href="#">View All</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-user"></i> John Smith <b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                
+                                <li>
+                                    <a href="#"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
+                    <div class="collapse navbar-collapse navbar-ex1-collapse">
+                        <ul class="nav navbar-nav side-nav">
+                            <li >
+                                <a href="javascript:;" data-toggle="collapse" data-target="#prd1"><i class="glyphicon glyphicon-cog" ></i> Módulo Configuración <i class="fa fa-fw fa-caret-down"></i></a>
+                                <ul id="prd1" class="collapse">
+                                                        
+                                    <li>
+                                        <a href="/matricula/modulos/creditos/administracion" target="admin" onclick="rutaCredito()">Créditos</a>
+                                    </li>
+
+                                    <li>
+                                        <a href="/matricula/modulos/materia/administracion" target="admin" onclick="rutaMateria()">Materias</a>
+                                    </li>
+
+                                    <li>
+                                        <a href="/matricula/modulos/programa/administracion" target="admin" onclick="rutaPrograma()">Programa Académico</a>
+                                    </li>
+
+                                    <li>
+                                        <a href="/matricula/modulos/estudiante/administracion" target="admin" onclick="rutaEstudiante()">Estudiantes</a>
+                                    </li>
+
+                                    <li>
+                                        <a href="/matricula/modulos/semestre/administracion" target="admin" onclick="rutaSemestre()">Semestre</a>
+                                    </li>
+                                    
+                                </ul>
+                            </li>
+
+                            <li>
+                                <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="glyphicon glyphicon-book"></i> Módulo Asignación <i class="fa fa-fw fa-caret-down"></i></a>
+                                <ul id="demo" class="collapse">
+                                <!--nivel 3-->
+                                <li>
+                                    <a href="/matricula/modulos/programa_semestre/administracion" target="admin" onclick="rutaSemestrePrograma()">Asignación Semestres</a>
+                                </li>
+
+                                <li>
+                                    <a href="/matricula/modulos/semestre_materia/administracion" target="admin" onclick="rutaSemestreMateria()">Asignación Materias</a>
+                                </li>
+                                                    
+                                </ul>
+                            </li>
+
+                            <li >
+                                <a href="javascript:;" data-toggle="collapse" data-target="#demo3"><i class="glyphicon glyphicon-folder-open"></i> Módulo Matriculas <i class="fa fa-fw fa-caret-down"></i></a>
+                                <ul id="demo3" class="collapse">
+                                
+                                    
+                                    <li>
+                                        <a href="/matricula/modulos/matricula/administracion" target="admin" onclick="rutaMatricula()">Matricula Académica</a>
+                                    </li>
+                                    
+                                </ul>
+                            </li>
+                        
+                        </ul>
+                    </div>
+                    <!-- /.navbar-collapse -->
+                </nav>
+
+                <div id="page-wrapper">
+
+                    <div class="container-fluid">
+
+                        <!-- Page Heading -->
+                        <div class="row">
+                            <div class="col-lg-12" id="rutas">
+                                <ol class="breadcrumb">
+                                    <li class="active">
+                                        <i class="glyphicon glyphicon-stats"></i> Módulo Configuración
+                                    </li>
+                                </ol>
+                            </div>
+                        </div>
+
+                        <iframe src="/matricula/modulos/estudiante/administracion" frameborder="0" scrolling="yes" name="admin" style="width: 100%; height: 540px"></iframe>
+                    </div>
+                    <!-- /.container-fluid -->
+
+                </div>
+                <!-- /#page-wrapper -->
+
+            </div>
+            <!-- /#wrapper -->
+
+            
+
+        </body>
+
+        </html>

@@ -1,0 +1,9 @@
+RewriteEngine on
+RewriteRule ^modulos/creditos/   modulos/creditos/controlador.php
+RewriteRule ^modulos/materia/   modulos/materia/controlador.php
+RewriteRule ^modulos/programa/   modulos/programa/controlador.php
+RewriteRule ^modulos/estudiante/   modulos/estudiante/controlador.php
+RewriteRule ^modulos/semestre/   modulos/semestre/controlador.php
+RewriteRule ^modulos/programa_semestre/   modulos/programa_semestre/controlador.php
+RewriteRule ^modulos/semestre_materia/   modulos/semestre_materia/controlador.php
+RewriteRule ^modulos/matricula/   modulos/matricula/controlador.php

@@ -1,0 +1,176 @@
+        <!DOCTYPE html>
+        <html lang="es">
+            <head>
+            <meta charset="utf-8">
+            <meta name="viewport"    content="width=device-width, initial-scale=1.0">
+            <META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+            <meta name="description" content="">
+            <meta name="author"      content="">
+
+            <title>Blanco</title>
+            <!-- estilos CSS -->
+            <link href="/matricula/public/css/bootstrap.min.css" rel="stylesheet">
+            <link href="/matricula/public/css/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+            <link rel="stylesheet" href="/matricula/public/css/jquery.dataTables.css">
+
+            <!--SCRIPTS-->
+            <script src="/matricula/public/js/jquery.js"></script>
+            <script src="/matricula/public/js/jquery.dataTables.js"></script>
+            <script src="/matricula/public/js/bootstrap.min.js"></script>
+            <script src="/matricula/public/js/sistema/jsCredito.js"></script>
+            <script type="text/javascript" language="javascript">
+            var asInitVals = new Array();
+            $(document).ready(function () {
+                oTable = $('#tabla').dataTable({
+                    "iDisplayLength": 50,
+                    "sPaginationType": "full_numbers",
+                    "oLanguage": {
+                        "sLengthMenu": "Mostrar: _MENU_ Registros por página",
+                        "sZeroRecords": "No se encontro Información <i class='glyphicon glyphicon-exclamation-sign'></i>",
+                        "sInfo": "Mostrando <b>_START_</b> a <b>_END_</b> Registros <br>Total Registros: <b>_TOTAL_</b> Registros</b>",
+                        "sInfoEmpty": "Mostrando 0 a 0 Registros",
+                        "sInfoFiltered": "(Filtrados de un total <b>_MAX_</b> Registros)",
+                        "sLoadingRecords": "Cargando...",
+                        "sProcessing": "En proceso...",
+                        "sSearch": "<i class='fa fa-search fa-lg'></i> Buscar:",
+                        "sEmptyTable": "No se encontro Información",
+                        "oPaginate": {
+                            "sFirst": "<i class='glyphicon glyphicon-triangle-left'></i> Inicio",
+                            "sLast": "Fin <i class='glyphicon glyphicon-triangle-right'></i>",
+                            "sNext": "Siguiente <i class='glyphicon glyphicon-chevron-right'></i>",
+                            "sPrevious": "<i class='glyphicon glyphicon-chevron-left'></i> Anterior"
+                        }
+                    },
+                    "aaSorting": [[0, "desc"]]
+                });
+
+                $('#tabla tbody').on('click', 'tr', function () {
+                    if ($(this).hasClass('selected')) {
+                        $(this).removeClass('selected');
+                        $("#idprogramaBuq").val('0');
+                    } else {
+                        oTable.$('tr.selected').removeClass('selected');
+                        $(this).addClass('selected');
+                        $("#idprogramaBuq").val($(this).find("td").eq(0).html());
+                    }
+                });
+            });
+            </script>
+            </head>
+
+
+            <body class="home" data-spy="scroll" data-target=".bs-docs-sidebar">
+            <!--contenedor imagen-->
+            
+            <!--fin contenedor imagen-->
+            <!--clase botones-->
+            <div class="botones">
+                <div class="row">
+                <div class="col-xs-12 col-md-8">
+                        <a href="#modalInsertar" role="button" class="btn btn-success" data-toggle="modal"><strong><i class="glyphicon glyphicon-plus"></i> Agregar</strong></a>
+                        <a href="#modalEditar" role="button" class="btn btn-warning" data-toggle="modal" onclick="return verEdicion(event)"><strong><i class="glyphicon glyphicon-edit"></i> Editar</strong></a>
+                        <a href="#modalEliminar" role="button" class="btn btn-danger" data-toggle="modal" onclick="return verEliminacion(event)"><strong><i class="glyphicon glyphicon-trash"></i> Eliminar</strong></a> 
+                </div>
+                </div>
+                
+                <input hidden id="idprogramaBuq" value="0">
+            </div>
+            <!--fin clase botones-->
+            <br>
+            <!--mensaje-->
+            <div id="mensaje">
+                {mensaje}
+            </div>
+            <!--fin mensaje-->
+
+                <!--tabla principal-->
+                <table id="tabla" class="table table-hover datagrid table-responsive table-condensed dataTable no-footer" cellspacing="0" width="100%">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>NOMBRE</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>{tablaProgramas}</tbody>
+                </table>
+                <!--fin clase principal tabla-->
+                <!-- Modal -->
+                <div class="modal fade" id="modalInsertar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <form method="POST" action="insertar" onsubmit="return confirm('¿ Desea agregar el registro ?');">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <h4 class="modal-title" id="myModalLabel">Insertar Información</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="row">
+                                        <div class="col-xs-12">
+                                            <strong>NOMBRE DEL PROGRAMA</strong>
+                                            <input type="text" class="form-control" name="nombre" id="" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="submit" class="btn btn-success">Guardar</button>
+                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+                                </div>
+                            </div>            
+                        </div>
+                    </form>
+                </div>
+                <!--fin modal-->
+                <!-- Modal -->
+                <div class="modal fade" id="modalEditar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <form id="frmEditar" method="POST" action="editar" onsubmit="return confirm('¿ Desea guardar los cambios efectuados ?')">
+                        <div class="modal-dialog modal-lg">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <h4 class="modal-title" id="myModalLabel">Editar Registro</h4>
+                                    <input hidden id="idprograma" name="idprograma" value="0"> 
+                                </div>
+                                <div class="modal-body">
+                                    <div class="row">
+                                        <div class="col-xs-12">
+                                            <strong>NOMBRE DEL PROGRAMA</strong>
+                                            <input type="text" class="form-control" name="numero" id="numero" required>
+                                           
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button disabled id="btnGuardar" type="submit" class="btn btn-success">Guardar</button>
+                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+                                </div>
+                            </div>            
+                        </div>
+                    </form>
+                </div>
+                <!--fin modal-->
+                <!-- Modal -->
+                <div class="modal fade" id="modalEliminar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <form id="frmEditar" method="POST" action="eliminar" >
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <h4 class="modal-title" id="myModalLabel"></h4>
+                                    <input hidden id="idprograma1" name="idprograma" value="0"> 
+                                </div>
+                                <div class="modal-body" align="center">
+                                    <h3>¿ Desea Eliminar el registro ?</h3>
+                                </div>
+                                <div class="modal-footer">
+                                    <button disabled id="btnEliminar" type="submit" class="btn btn-info">Eliminar</button>
+                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                                </div>
+                            </div>            
+                        </div>
+                    </form>
+                </div>
+                <!--fin modal-->
+
+            </body>
+        </html>
